@@ -3,7 +3,7 @@ package classes;
 public abstract class Evento {
     protected String nombreEvento;
     protected String fecha;
-    protected Lugar lugar;
+    protected Lugar[] lugar;
     protected Modelo[] modelo;
     protected Fotografo[] fotografo;
 
@@ -27,7 +27,7 @@ public abstract class Evento {
         return lugar.toString();
     }
 
-    public void setLugar(Lugar lugar) {
+    public void setLugar(Lugar[] lugar) {
         this.lugar = lugar;
     }
 
@@ -47,7 +47,7 @@ public abstract class Evento {
         this.fotografo = fotografo;
     }
 
-    public Evento(String nombreEvento, String fecha, Lugar lugar, Modelo[] modelo, Fotografo[] fotografo) {
+    public Evento(String nombreEvento, String fecha, Lugar[] lugar, Modelo[] modelo, Fotografo[] fotografo) {
         this.nombreEvento = nombreEvento;
         this.fecha = fecha;
         this.lugar = lugar;

@@ -3,7 +3,7 @@ package classes;
 public abstract class Persona {
     protected String nombre;
     protected String identificacion;
-    protected  int contacto;
+    protected int contacto;
 
     public Persona(String nombre, String identificacion, int contacto) {
         this.nombre = nombre;

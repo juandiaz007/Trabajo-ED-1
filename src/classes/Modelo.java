@@ -21,6 +21,41 @@ public class Modelo extends Persona {
         this.disponibilidad = disponibilidad;
     }
 
+    public Modelo(String nombre, String identificacion, int contacto, String codigoModelo, String categoria) {
+    }
+
+    public String getCodigoModelo() {
+        return codigoModelo;
+    }
+
+    public void setCodigoModelo(String codigoModelo) {
+        this.codigoModelo = codigoModelo;
+    }
+
+    public int getEstatura() {
+        return estatura;
+    }
+
+    public void setEstatura(int estatura) {
+        this.estatura = estatura;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public boolean isDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+
     @Override
     protected void mostrarInformacion() {
 

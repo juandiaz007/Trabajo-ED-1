@@ -22,6 +22,9 @@ public class Modelo extends Persona {
     }
 
     public Modelo(String nombre, String identificacion, int contacto, String codigoModelo, String categoria) {
+        super(nombre, identificacion, contacto);
+        this.codigoModelo = codigoModelo;
+        this.categoria = categoria;
     }
 
     public String getCodigoModelo() {
@@ -58,6 +61,12 @@ public class Modelo extends Persona {
 
     @Override
     protected void mostrarInformacion() {
-
+        System.out.println("Nombre: " + nombre);
+        System.out.println("ID: " + identificacion);
+        System.out.println("Contacto: " + contacto);
+        System.out.println("Codigo modelo: " + codigoModelo);
+        System.out.println("Estatura: " + estatura);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Disponible: " + disponibilidad);
     }
 }

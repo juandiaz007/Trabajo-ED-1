@@ -13,18 +13,19 @@ public class Persistencia {
     public void guardarModelos(Modelo[] modelos, int cantidad) {
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_MODELOS)); // abre el archivo para escribir
+            BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_MODELOS));
 
             for (int i = 0; i < cantidad; i++) {
 
                 Modelo m = modelos[i];
 
                 bw.write(
-                        m.getCodigoModelo() + ";" +
+                        m.getNombre() + ";" +
                                 m.getIdentificacion() + ";" +
-                                m.getNombre() + ";" +
-                                m.getCategoria() + ";" +
+                                m.getContacto() + ";" +
+                                m.getCodigoModelo() + ";" +
                                 m.getEstatura() + ";" +
+                                m.getCategoria() + ";" +
                                 m.isDisponibilidad()
                 );
 
@@ -41,82 +42,7 @@ public class Persistencia {
 
     public int cargarModelos(Modelo[] modelos) {
 
-        File archivo = new File("modelos.txt");
-
-        if (!archivo.exists()) {
-            return 0;
-        }
-
-        int contador = 0;
-
-        try {
-
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-
-                String[] partes = linea.split(";"); // corta en pedazos la cadena para organizar los datos
-
-                String nombre = partes[0];
-                String identificacion = partes[1];
-                int contacto = Integer.parseInt(partes[2]);
-                String codigoModelo = partes[3];
-                int estatura = Integer.parseInt(partes[4]);
-                String categoria = partes[5];
-                boolean disponibilidad = Boolean.parseBoolean(partes[6]);
-
-                modelos[contador] = new Modelo( // crea el objeto y ya se creo el modelo
-                        nombre,
-                        identificacion,
-                        contacto,
-                        codigoModelo,
-                        categoria
-                );
-
-                contador++;
-            }
-
-            br.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return contador;
-    }
-
-
-
-    public void guardarFotografos(Fotografo[] fotografos, int cantidad) {
-
-        try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_FOTOGRAFOS));
-
-            for (int i = 0; i < cantidad; i++) {
-
-                Fotografo f = fotografos[i];
-
-                bw.write(
-                        f.getNombre() + ";" +
-                                f.getEspecialidad() +";"+
-                                f.getAñosExperiencia()
-                );
-
-                bw.newLine();
-            }
-
-            bw.close();
-
-        } catch (IOException e) {
-            System.out.println("Error guardando fotografos");
-        }
-    }
-
-
-    public int cargarFotografos(Fotografo[] fotografos) {
-
-        File archivo = new File("Fotografos.txt");
+        File archivo = new File(ARCHIVO_MODELOS);
 
         if (!archivo.exists()) {
             return 0;
@@ -134,15 +60,97 @@ public class Persistencia {
                 String[] partes = linea.split(";");
 
                 String nombre = partes[0];
-                String especialidad = partes[1];
-                String añosExperiencia = partes[2];
+                String identificacion = partes[1];
+                int contacto = Integer.parseInt(partes[2]);
+                String codigoModelo = partes[3];
+                int estatura = Integer.parseInt(partes[4]);
+                String categoria = partes[5];
+                boolean disponibilidad = Boolean.parseBoolean(partes[6]);
 
+                modelos[contador] = new Modelo(
+                        nombre,
+                        identificacion,
+                        contacto,
+                        codigoModelo,
+                        estatura,
+                        categoria,
+                        disponibilidad
+                );
+
+                contador++;
+            }
+
+            br.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return contador;
+    }
+
+
+    public void guardarFotografos(Fotografo[] fotografos, int cantidad) {
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_FOTOGRAFOS));
+
+            for (int i = 0; i < cantidad; i++) {
+
+                Fotografo f = fotografos[i];
+
+                bw.write(
+                        f.getNombre() + ";" +
+                                f.getIdentificacion() + ";" +
+                                f.getContacto() + ";" +
+                                f.getEspecialidad() + ";" +
+                                f.getAñosExperiencia()
+                );
+
+                bw.newLine();
+            }
+
+            bw.close();
+
+        } catch (IOException e) {
+            System.out.println("Error guardando fotografos");
+        }
+    }
+
+
+    public int cargarFotografos(Fotografo[] fotografos) {
+
+        File archivo = new File(ARCHIVO_FOTOGRAFOS);
+
+        if (!archivo.exists()) {
+            return 0;
+        }
+
+        int contador = 0;
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+
+                String[] partes = linea.split(";");
+
+                String nombre = partes[0];
+                String identificacion = partes[1];
+                int contacto = Integer.parseInt(partes[2]);
+                String especialidad = partes[3];
+                int añosExperiencia = Integer.parseInt(partes[4]);
 
                 fotografos[contador] = new Fotografo(
                         nombre,
-                        especialidad,
-                        añosExperiencia
+                        identificacion,
+                        contacto,
+                        especialidad
                 );
+
+                fotografos[contador].setAñosExperiencia(añosExperiencia);
 
                 contador++;
             }
@@ -168,10 +176,10 @@ public class Persistencia {
                 Lugar l = lugares[i];
 
                 bw.write(
-                        l.getCiudad() + ";" +
-                                l.getNombre() + ";" +
+                        l.getNombre() + ";" +
                                 l.getDireccion() + ";" +
                                 l.getCapacidad() + ";" +
+                                l.getCiudad() + ";" +
                                 l.getTipoLugar()
                 );
 
@@ -188,7 +196,7 @@ public class Persistencia {
 
     public int cargarLugar(Lugar[] lugares) {
 
-        File archivo = new File("lugar.txt");
+        File archivo = new File(ARCHIVO_LUGARES);
 
         if (!archivo.exists()) {
             return 0;
@@ -207,13 +215,16 @@ public class Persistencia {
 
                 String nombre = partes[0];
                 String direccion = partes[1];
-                int capacidad = Integer.parseInt(partes[2]);
-                String ciudad = partes[3];
-                String tipoLugar = partes[5];
+                String ciudad = partes[2];
+                int capacidad = Integer.parseInt(partes[3]);
+                String tipoLugar = partes[4];
 
                 lugares[contador] = new Lugar(
-                        nombre
-
+                        nombre,
+                        direccion,
+                        ciudad,
+                        capacidad,
+                        tipoLugar
                 );
 
                 contador++;
@@ -242,9 +253,9 @@ public class Persistencia {
                 bw.write(
                         e.getNombreEvento() + ";" +
                                 e.getFecha() + ";" +
-                                e.getFotografo() + ";" +
+                                e.getFotografos() + ";" +
                                 e.getLugar()+ ";" +
-                                e.getModelo()
+                                e.getModelos()
 
                 );
 

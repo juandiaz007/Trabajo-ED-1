@@ -7,7 +7,8 @@ public class Lugar {
     private int capacidad;
     private String tipoLugar;
 
-    public Lugar(String nombre, String direccion, String ciudad, String tipoLugar, int capacidad ) {
+
+    public Lugar(String nombre, String direccion, String ciudad, int capacidad, String tipoLugar) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.ciudad = ciudad;

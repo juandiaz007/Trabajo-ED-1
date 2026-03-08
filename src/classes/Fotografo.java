@@ -39,6 +39,12 @@ public class Fotografo extends Persona{
 
     @Override
     protected void mostrarInformacion() {
-        
+
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Identificacion: " + identificacion);
+        System.out.println("Contacto: " + contacto);
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Años experiencia: " + añosExperiencia);
+
     }
 }

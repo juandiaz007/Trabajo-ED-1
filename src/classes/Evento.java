@@ -1,58 +1,69 @@
 package classes;
 
 public abstract class Evento {
+
     protected String nombreEvento;
     protected String fecha;
-    protected Lugar[] lugar;
-    protected Modelo[] modelo;
-    protected Fotografo[] fotografo;
+    protected Lugar lugar;
+
+    protected Modelo[] modelos;
+    protected Fotografo[] fotografos;
+
+    protected int numModelos;
+    protected int numFotografos;
+
+    public Evento(String nombreEvento, String fecha, Lugar lugar, int maxModelos, int maxFotografos) {
+        this.nombreEvento = nombreEvento;
+        this.fecha = fecha;
+        this.lugar = lugar;
+
+        modelos = new Modelo[maxModelos];
+        fotografos = new Fotografo[maxFotografos];
+
+        numModelos = 0;
+        numFotografos = 0;
+    }
 
     public String getNombreEvento() {
         return nombreEvento;
-    }
-
-    public void setNombreEvento(String nombreEvento) {
-        this.nombreEvento = nombreEvento;
     }
 
     public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public Lugar getLugar() {
+        return lugar;
     }
 
-    public String getLugar() {
-        return lugar.toString();
+    public Modelo[] getModelos() {
+        return modelos;
     }
 
-    public void setLugar(Lugar[] lugar) {
-        this.lugar = lugar;
+    public Fotografo[] getFotografos() {
+        return fotografos;
     }
 
-    public Modelo[] getModelo() {
-        return modelo;
+    // agregar modelo al evento
+    public void agregarModelo(Modelo m) {
+
+        if (numModelos < modelos.length) {
+            modelos[numModelos] = m;
+            numModelos++;
+        } else {
+            System.out.println("No se pueden agregar más modelos.");
+        }
     }
 
-    public void setModelo(Modelo[] modelo) {
-        this.modelo = modelo;
-    }
+    // agregar fotografo al evento
+    public void agregarFotografo(Fotografo f) {
 
-    public Fotografo[] getFotografo() {
-        return fotografo;
-    }
-
-    public void setFotografo(Fotografo[] fotografo) {
-        this.fotografo = fotografo;
-    }
-
-    public Evento(String nombreEvento, String fecha, Lugar[] lugar, Modelo[] modelo, Fotografo[] fotografo) {
-        this.nombreEvento = nombreEvento;
-        this.fecha = fecha;
-        this.lugar = lugar;
-        this.modelo = modelo;
-        this.fotografo = fotografo;
+        if (numFotografos < fotografos.length) {
+            fotografos[numFotografos] = f;
+            numFotografos++;
+        } else {
+            System.out.println("No se pueden agregar más fotografos.");
+        }
     }
 
     protected abstract void mostrarDetalles();

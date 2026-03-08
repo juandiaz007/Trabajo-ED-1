@@ -23,9 +23,7 @@ public class Agencia {
         numEventos = 0;
     }
 
-    // -------------------------
     // GESTIONAR MODELOS
-    // -------------------------
 
     public void agregarModelo(Modelo m) {
 
@@ -44,9 +42,7 @@ public class Agencia {
         }
     }
 
-    // -------------------------
     // GESTIONAR FOTOGRAFOS
-    // -------------------------
 
     public void agregarFotografo(Fotografo f) {
 
@@ -65,9 +61,7 @@ public class Agencia {
         }
     }
 
-    // -------------------------
     // GESTIONAR EVENTOS
-    // -------------------------
 
     public void agregarEvento(Evento e) {
 
@@ -86,9 +80,7 @@ public class Agencia {
         }
     }
 
-    // -------------------------
     // RELACIONAR PERSONAS CON EVENTOS
-    // -------------------------
 
     public Evento buscarEvento(String nombre) {
 
@@ -124,9 +116,7 @@ public class Agencia {
         }
     }
 
-    // -------------------------
     // GUARDAR MODELOS EN ARCHIVO
-    // -------------------------
 
     public void guardarModelos() throws IOException {
 
